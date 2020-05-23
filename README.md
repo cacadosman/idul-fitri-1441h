@@ -1,4 +1,4 @@
-# ied1441h
+# Idul Fitri 1441H
 
 ## Project setup
 ```

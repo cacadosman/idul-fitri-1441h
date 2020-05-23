@@ -1,28 +1,64 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div 
+  id="app"
+  class="hover"
+  >
+    <div v-if="isDesktop">
+      <IdulFitri/>
+      <vue-particles 
+      color="#dedede"
+      :particlesNumber="120"
+      shapeType="star"
+      >
+      </vue-particles>
+      <iframe 
+      width="1"
+      height="1" 
+      src="https://www.youtube.com/embed/AlJfrwOvsYk?autoplay=1"
+      wmode="transparent"
+      frameborder="0" 
+      allow="autoplay"
+      allowfullscreen
+      />
+    </div>
+    <div v-else>
+      <h1
+      style="color: white;"
+      >Mohon maaf, hanya dapat dibuka melalui PC Desktop</h1>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import IdulFitri from './components/IdulFitri.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    IdulFitri
+  },
+  computed: {
+    isDesktop () {
+      return window.innerWidth > 800
+    }
+  },
+  methods: {
+    mouseMove (event) {
+      const position = {
+        x: event.clientX,
+        y: event.clientY
+      }
+      this.$store.commit('setMousePos', position)
+    }
+  },
+  created: function () {
+    window.addEventListener('mousemove', this.mouseMove)
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  body {
+    background-color: #192a56;
+  }
 </style>
